@@ -20,22 +20,25 @@ const RestaurentMenu = () => {
         fetchresData();
       }, []);
 
+    if (resInfo === null) return <Shimmer/>
+    
+    
     const {name,cuisines,costForTwo} =resInfo?.data.cards[0]?.card?.card?.info;
     const {itemCards}= resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
- console.log(itemCards)
-  if (resInfo === null) return <Shimmer/>
-    return(
-        <div>
-           
+    console.log(itemCards)
+  
+    return (resInfo===null)?<Shimmer/>:(
+        <div>           
         <h1>{name}</h1>
         <h2>{cuisines.join(",")}</h2>
         <h2>{"cost for two : "} {costForTwo/100}</h2>  
          <ul>
              {itemCards.map((each)=><li key={each.card.info.id}>{each.card.info.name}-{" Rs "}
-             {(each.card.info.price)}</li>)}
+             {(each.card.info.price)/100}</li>)}
          </ul>
  </div>
     )
+    
 }
 
 export default RestaurentMenu;
