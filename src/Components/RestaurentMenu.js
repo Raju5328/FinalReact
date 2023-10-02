@@ -1,24 +1,28 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import useRestaurantMenu from "../../../EPISODE-7/src/utils/useRestaurantMenu";
 
 const RestaurentMenu = () => {
-    let api = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=";
-    const {resId} = useParams();
-    console.log(resId);
-    const [resInfo, setresInfo] = useState(null)
+    const {resId} =useParams();
+    const resInfo= useRestaurantMenu(resId)
+
+    // let api = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=";
+    // const {resId} = useParams();
+    // console.log(resId);
+    // const [resInfo, setresInfo] = useState(null)
 
       
-    const fetchresData = async () => {
-        const response = await fetch(api+resId)
-        const resMenu = await response.json();
-        console.log(resMenu)
-        setresInfo(resMenu)
-    }
+    // const fetchresData = async () => {
+    //     const response = await fetch(api+resId)
+    //     const resMenu = await response.json();
+    //     console.log(resMenu)
+    //     setresInfo(resMenu)
+    // }
 
-    useEffect(() => {
-        fetchresData();
-      }, []);
+    // useEffect(() => {
+    //     fetchresData();
+    //   }, []);
 
     if (resInfo === null) return <Shimmer/>
     

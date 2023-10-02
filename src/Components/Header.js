@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import '../../index.css';
 import { Link } from "react-router-dom";
-
+import onlineStatus from "../utils/onlineStatus";
+ 
 const Header = () =>{
 
         const [login, setlogin] = useState("LogIn");
+        const onlineStatusCheck = onlineStatus();
 
        
 
@@ -13,6 +15,7 @@ const Header = () =>{
         <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"/>
         <div className="navitems">
             <ul className="listheader">
+                <li>Onlin Status = {onlineStatusCheck? <span>Online</span>: "Offline" }</li>
                 <li><Link to="/"> Home</Link></li>
                 <li><Link to="/contact"> Contact</Link></li>
                 <li><Link to="/about"> About</Link></li>
